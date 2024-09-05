@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-// import App from './App';
+import App from './App';
 
 export type Data = {
   id: string;
@@ -15,7 +15,7 @@ export default async function Home() {
   const data: Data[] = JSON.parse(file);
   return (
     <>
-      {data.map((app) => (
+      {/* {data.map((app) => (
         <div
           key={app.id}
           className="border border-gray-300 m-[0.1rem] p-2 flex-[1_1_calc(25%_-_1.5rem)] box-border flex flex-col justify-center items-center text-center"
@@ -25,9 +25,9 @@ export default async function Home() {
             Total spend: ${app.spend.toLocaleString()}
           </p>
         </div>
-      ))}
+      ))} */}
 
-      {/* <App /> */}
+      <App data={data} />
     </>
   );
 }
