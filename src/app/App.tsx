@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Data } from './server/getData';
+import { Data } from './types/data';
 import { NavigationTree } from './components/NavigationTree';
 import { RangeFilter } from './components/RangeFilter';
 import { ApplicationList } from './components/ApplicationList';
@@ -8,15 +8,6 @@ import { buildTree } from './utils/buildTree';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
 const App = ({ data }: { data: Data[] }) => {
-  //const [data, setData] = useState<Data[]>([]);
-
-  // useEffect(() => {
-  //   getData().then((data) => {
-  //     console.log(data);
-  //     setData(data);
-  //   });
-  // }, []);
-
   const [selectedCapability, setSelectedCapability] = useState<string>('');
   const [spendingRange, setSpendingRange] = useState<[number, number]>([
     0, 100000,

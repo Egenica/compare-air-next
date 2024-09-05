@@ -1,18 +1,18 @@
 'use server';
-import { promises as fs } from 'fs';
+// import { promises as fs } from 'fs';
+import { Data } from './../types/data';
 
-export type Data = {
-  id: string;
-  name: string;
-  spend: number;
-  BCAP1: string;
-  BCAP2: string;
-  BCAP3: string;
-};
+// export default async function getData() {
+//   const file = await fs.readFile(process.cwd() + '/src/app/data.json', 'utf8');
+//   const data: Data[] = JSON.parse(file);
+//   console.log(data);
+//   return data;
+// }
 
-export default async function getData() {
+import fs from 'fs/promises';
+
+export const getData = async (): Promise<Data[]> => {
   const file = await fs.readFile(process.cwd() + '/src/app/data.json', 'utf8');
   const data: Data[] = JSON.parse(file);
-  console.log(data);
   return data;
-}
+};

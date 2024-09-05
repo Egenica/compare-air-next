@@ -1,10 +1,6 @@
-import { Data } from '../server/getData';
+import { Data } from './../types/data';
 
-interface ApplicationListProps {
-  applications: Data[];
-}
-
-export const ApplicationList = ({ applications }: ApplicationListProps) => {
+export const ApplicationList = ({ applications }: { applications: Data[] }) => {
   return (
     <div className="flex flex-wrap gap-2">
       {applications.map((app) => (

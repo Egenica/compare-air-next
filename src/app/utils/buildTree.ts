@@ -1,9 +1,9 @@
-import { Data } from '../server/getData';
+import { Data } from './../types/data';
 
-interface TreeNode {
+type TreeNode = {
   name: string;
   children?: TreeNode[];
-}
+};
 
 export const buildTree = (applications: Data[]): TreeNode[] => {
   const tree: TreeNode[] = [];
