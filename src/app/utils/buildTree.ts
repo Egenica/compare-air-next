@@ -1,4 +1,4 @@
-import { Data } from '../server/useFetchData';
+import { Data } from '../server/getData';
 
 interface TreeNode {
   name: string;
