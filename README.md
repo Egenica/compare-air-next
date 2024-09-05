@@ -32,6 +32,6 @@ Additional notes
 - Add comments where necessary or to document any assumptions/considerations you may have.
 - You shouldn't need to use any external libraries
 
-Lighthouse Audit Result
+## Lighthouse Audit Result
 
 ![Lighthouse Result](/SCR-20240905-olzn.png)
