@@ -29,12 +29,10 @@ const App = ({ data }: { data: Data[] }) => {
 
   if (data.length === 0) {
     return (
-      <>
-        <div className="flex items-center justify-center h-screen">
-          <LoadingSpinner />
-          <span className="ml-2">Loading data...</span>
-        </div>
-      </>
+      <div className="flex items-center justify-center h-screen">
+        <LoadingSpinner />
+        <span className="ml-2">Loading data...</span>
+      </div>
     );
   }
 

@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# React Exercise
 
-## Getting Started
+This exercise is to help us better understand your experience in react and typescript, how you would go about structuring your work, code quality, styles, etc...
 
-First, run the development server:
+## Setup
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+To get started, install the dependencies with `npm install`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Run the application with `npm run dev`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Launch application in browser at [http://localhost:5173](http://localhost:5173).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Task
 
-## Learn More
+We would like you to build a simple data explorer as shown in the image below. This is a wireframe to demonstrate how the app should look once complete. Do not add any additional dependencies and you do not need to amend the data service to complete this task.
 
-To learn more about Next.js, take a look at the following resources:
+![React Exercise wireframe](/react-exercise.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The data is a list of application records and is fetchable at [http://localhost:8080/data](http://localhost:8080/data). Each application has 3 levels of business capabilities. Business capabilities are hierarchical as shown in the image (Business capability 1 -> Business capability 2 -> Business capability 3)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The app should -
 
-## Deploy on Vercel
+- Requests the dataset.
+- Build a hierarchical navigation tree displaying the different levels of business capabilities. Bonus points if we can expand/collapse the navigation tree.
+- Have a range slider to be able to further filter the dataset based on the total spending value
+- Present a list of applications from the data set, showing name and total spend. The list depends on the navigation tree and the range filter
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Additional notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Please spend as much time as you feel necessary to complete the task and show off your skills.
+- We will be looking at code/file structure, code quality & best practices & design.
+- Add comments where necessary or to document any assumptions/considerations you may have.
+- You shouldn't need to use any external libraries
