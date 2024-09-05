@@ -47,7 +47,7 @@ const App = ({ data }: { data: Data[] }) => {
             onSelect={(capability) => setSelectedCapability(capability)}
           />
 
-          <h3 className="mb-[0.2rem] mt-3">Filters</h3>
+          <h2 className="mb-[0.2rem] mt-3">Filters</h2>
           <RangeFilter
             min={minSpend}
             max={maxSpend}

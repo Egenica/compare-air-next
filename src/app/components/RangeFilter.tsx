@@ -13,7 +13,7 @@ export const RangeFilter = ({
 }: RangeFilterProps) => {
   return (
     <>
-      <label className="mb-[0.8rem] block">
+      <label className="mb-[0.8rem] block" htmlFor="range">
         <span className="text-gray-500">Spending</span>
       </label>
 
@@ -24,6 +24,7 @@ export const RangeFilter = ({
           max={max}
           value={value[0]}
           onChange={(e) => onChange([Number(e.target.value), value[1]])}
+          id="range"
         />
       </div>
       <div className="flex justify-between items-center">
