@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { getData } from './server/getData';
-import { Data } from './server/getData';
+import getData, { Data } from './server/getData';
 import { NavigationTree } from './components/NavigationTree';
 import { RangeFilter } from './components/RangeFilter';
 import { ApplicationList } from './components/ApplicationList';
@@ -12,7 +11,10 @@ const App = () => {
   const [data, setData] = useState<Data[]>([]);
 
   useEffect(() => {
-    getData().then((data) => setData(data));
+    getData().then((data) => {
+      console.log(data);
+      setData(data);
+    });
   }, []);
 
   const [selectedCapability, setSelectedCapability] = useState<string>('');
