@@ -31,3 +31,7 @@ Additional notes
 - We will be looking at code/file structure, code quality & best practices & design.
 - Add comments where necessary or to document any assumptions/considerations you may have.
 - You shouldn't need to use any external libraries
+
+Lighthouse Audit Result
+
+![Lighthouse Result](/SCR-20240905-olzn.png)
