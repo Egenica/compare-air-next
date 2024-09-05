@@ -8,7 +8,7 @@ To get started, install the dependencies with `npm install`.
 
 Run the application with `npm run dev`.
 
-Launch application in browser at [http://localhost:5173](http://localhost:5173).
+Launch application in browser at [http://localhost:3000](http://localhost:3000).
 
 ## Task
 
@@ -16,7 +16,7 @@ We would like you to build a simple data explorer as shown in the image below. T
 
 ![React Exercise wireframe](/react-exercise.png)
 
-The data is a list of application records and is fetchable at [http://localhost:8080/data](http://localhost:8080/data). Each application has 3 levels of business capabilities. Business capabilities are hierarchical as shown in the image (Business capability 1 -> Business capability 2 -> Business capability 3)
+The data is stored in data.json file. Each application has 3 levels of business capabilities. Business capabilities are hierarchical as shown in the image (Business capability 1 -> Business capability 2 -> Business capability 3)
 
 The app should -
 
