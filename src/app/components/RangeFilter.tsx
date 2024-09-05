@@ -14,7 +14,7 @@ export const RangeFilter = ({
   return (
     <>
       <label className="mb-[0.8rem] block" htmlFor="range">
-        <span className="text-gray-500">Spending</span>
+        <span className="text-gray-400 text-sm">Spending</span>
       </label>
 
       <div className="flex flex-col">
@@ -27,7 +27,7 @@ export const RangeFilter = ({
           id="range"
         />
       </div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center text-white text-sm px-[0.1rem] mt-3">
         <span>${value[0].toLocaleString()}</span>
         <span>${value[1].toLocaleString()}</span>
       </div>

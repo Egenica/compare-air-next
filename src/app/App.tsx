@@ -38,16 +38,19 @@ const App = ({ data }: { data: Data[] }) => {
 
   return (
     <div className="App">
-      <div className="flex">
-        <div className="flex flex-col min-w-fit p-[1%] border-r border-black mr-[1%] pr-[2%]">
-          <h1 className="mt-0 mb-1 text-base">Navigation</h1>
+      <h1 className="text-white font-thin text-2xl my-6">
+        <span className="font-semibold">Archax</span> - Application Data Filter
+      </h1>
+      <div className="flex p-6 rounded-lg bg-[#00000038]">
+        <div className="flex flex-col min-w-fit p-8 rounded mr-4 bg-[#00000038]">
+          <h1 className="mt-0 mb-1 text-white font-bold">Navigation</h1>
           <NavigationTree
             treeData={treeData}
             selected={selectedCapability}
             onSelect={(capability) => setSelectedCapability(capability)}
           />
 
-          <h2 className="mb-[0.2rem] mt-3">Filters</h2>
+          <h2 className="mb-[0.2rem] mt-4 text-white font-bold">Filters</h2>
           <RangeFilter
             min={minSpend}
             max={maxSpend}
@@ -55,7 +58,7 @@ const App = ({ data }: { data: Data[] }) => {
             onChange={setSpendingRange}
           />
         </div>
-        <div className="m-1">
+        <div>
           <ApplicationList applications={filteredData} />
         </div>
       </div>

@@ -27,7 +27,7 @@ export const NavigationTree: React.FC<NavigationTreeProps> = ({
     ));
 
   return (
-    <div className="border-b border-black pb-[15px]">
+    <div className="border-b border-[#ffffff30] pb-[15px]">
       {renderTree(treeData)}
     </div>
   );
@@ -57,15 +57,25 @@ const TreeNodeComponent: React.FC<TreeNodeComponentProps> = ({
 
   return (
     <div>
-      <div className="flex items-center">
+      <div className="flex items-center ml-[-0.6rem]">
         {node.children && (
           <span onClick={handleToggle} className="cursor-pointer">
             {expanded ? (
-              <svg width="30" height="30" viewBox="0 0 24 24">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                className="fill-white opacity-50"
+              >
                 <path d="M7 14l5-5 5 5z" />
               </svg>
             ) : (
-              <svg width="30" height="30" viewBox="0 0 24 24">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                className="fill-white opacity-50"
+              >
                 <path d="M7 10l5 5 5-5z" />
               </svg>
             )}
@@ -76,7 +86,7 @@ const TreeNodeComponent: React.FC<TreeNodeComponentProps> = ({
             onSelect(node.name);
             setExpanded(!expanded);
           }}
-          className={`cursor-pointer ${
+          className={`cursor-pointer text-white font-thin text-sm ${
             node.name === selected ? 'underline' : 'no-underline'
           }`}
         >
