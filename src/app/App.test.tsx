@@ -38,9 +38,9 @@ describe('App Component', () => {
       render(<App data={mockData} />);
     });
 
-    const capabilityElement = screen.getByRole('button', {
+    const capabilityElement = screen.getAllByRole('button', {
       name: 'Business Capability 1',
-    });
+    })[0];
     await act(async () => {
       capabilityElement.click();
     });
@@ -57,10 +57,10 @@ describe('App Component', () => {
     await act(async () => {
       render(<App data={mockData} />);
     });
-    const navMenu = screen.getByRole('heading', {
+    const navMenu = screen.getAllByRole('heading', {
       name: /Navigation/i,
       level: 1,
-    });
+    })[0];
     // debug();
     expect(navMenu).toBeInTheDocument();
   });
@@ -69,10 +69,10 @@ describe('App Component', () => {
     await act(async () => {
       render(<App data={mockData} />);
     });
-    const filtersSection = screen.getByRole('heading', {
+    const filtersSection = screen.getAllByRole('heading', {
       name: /Filters/i,
       level: 2,
-    });
+    })[0];
     // debug();
     expect(filtersSection).toBeInTheDocument();
   });

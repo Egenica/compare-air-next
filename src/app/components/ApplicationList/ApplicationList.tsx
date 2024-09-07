@@ -6,7 +6,7 @@ export const ApplicationList = ({ applications }: { applications: Data[] }) => {
       {applications.map((app) => (
         <li
           key={app.id}
-          className="p-2 py-8 flex-[1_1_calc(25%_-_1.5rem)] box-border flex flex-col justify-center items-center text-center rounded shadow-lg bg-gradient-to-br from-[#0f009f00] via-[#0000005c] to-transparent border border-[#ffffff30]"
+          className="p-2 py-8 lg:flex-[1_1_calc(25%_-_1.5rem)] box-border flex flex-col justify-center items-center text-center rounded shadow-lg bg-gradient-to-br from-[#0f009f00] via-[#0000005c] to-transparent border border-[#ffffff30] flex-grow"
         >
           <h3 className="mb-1 font-bold text-white opacity-80">{app.name}</h3>
           <p className="whitespace-nowrap text-white text-sm">

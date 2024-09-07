@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 import { render, waitFor } from '@testing-library/react';
 
-import Home from '../src/app/page';
-import { getData } from '../src/app/server/getData';
-import { Data } from '../src/app/types/data';
+import Home from './page';
+import { getData } from './server/getData';
+import { Data } from './types/data';
 
 const mockData: Data[] = [
   {
@@ -17,7 +17,7 @@ const mockData: Data[] = [
 ];
 
 // Mock the getData function
-jest.mock('../src/app/server/getData');
+jest.mock('./server/getData');
 const mockedGetData = getData as jest.MockedFunction<typeof getData>;
 
 describe('Home', () => {
