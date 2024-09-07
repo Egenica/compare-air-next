@@ -71,7 +71,7 @@ describe('ApplicationList', () => {
     const items = screen.getAllByRole('listitem');
     items.forEach((item) => {
       expect(item).toHaveClass(
-        'p-2 py-8 flex-[1_1_calc(25%_-_1.5rem)] box-border flex flex-col justify-center items-center text-center rounded shadow-lg bg-gradient-to-br from-[#0f009f00] via-[#0000005c] to-transparent border border-[#ffffff30]'
+        'p-2 py-8 lg:flex-[1_1_calc(25%_-_1.5rem)] box-border flex flex-col justify-center items-center text-center rounded shadow-lg bg-gradient-to-br from-[#0f009f00] via-[#0000005c] to-transparent border border-[#ffffff30] flex-grow'
       );
     });
   });
