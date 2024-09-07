@@ -35,3 +35,5 @@ Additional notes
 ## Lighthouse Audit Result
 
 ![Lighthouse Result](/SCR-20240905-olzn.png)
+
+-
