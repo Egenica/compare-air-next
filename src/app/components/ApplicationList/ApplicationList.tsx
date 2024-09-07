@@ -1,10 +1,10 @@
-import { Data } from './../types/data';
+import { Data } from '../../types/data';
 
 export const ApplicationList = ({ applications }: { applications: Data[] }) => {
   return (
-    <div className="flex flex-wrap gap-4">
+    <ul className="flex flex-wrap gap-4">
       {applications.map((app) => (
-        <div
+        <li
           key={app.id}
           className="p-2 py-8 flex-[1_1_calc(25%_-_1.5rem)] box-border flex flex-col justify-center items-center text-center rounded shadow-lg bg-gradient-to-br from-[#0f009f00] via-[#0000005c] to-transparent border border-[#ffffff30]"
         >
@@ -15,8 +15,8 @@ export const ApplicationList = ({ applications }: { applications: Data[] }) => {
               ${app.spend.toLocaleString()}
             </span>
           </p>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };

@@ -39,7 +39,7 @@ interface TreeNodeComponentProps {
   onSelect: (capability: string) => void;
 }
 
-const TreeNodeComponent: React.FC<TreeNodeComponentProps> = ({
+export const TreeNodeComponent: React.FC<TreeNodeComponentProps> = ({
   node,
   selected,
   onSelect,
@@ -59,7 +59,7 @@ const TreeNodeComponent: React.FC<TreeNodeComponentProps> = ({
     <div>
       <div className="flex items-center ml-[-0.6rem]">
         {node.children && (
-          <span onClick={handleToggle} className="cursor-pointer">
+          <button onClick={handleToggle} className="cursor-pointer">
             {expanded ? (
               <svg
                 width="30"
@@ -79,19 +79,19 @@ const TreeNodeComponent: React.FC<TreeNodeComponentProps> = ({
                 <path d="M7 10l5 5 5-5z" />
               </svg>
             )}
-          </span>
+          </button>
         )}
-        <span
+        <button
           onClick={() => {
             onSelect(node.name);
-            setExpanded(!expanded);
+            setExpanded((value) => !value);
           }}
           className={`cursor-pointer text-white font-thin text-sm ${
             node.name === selected ? 'underline' : 'no-underline'
           }`}
         >
           {node.name}
-        </span>
+        </button>
       </div>
       {expanded && node.children && (
         <div className="ml-[0.8rem]">

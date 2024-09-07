@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { Data } from './types/data';
-import { NavigationTree } from './components/NavigationTree';
-import { RangeFilter } from './components/RangeFilter';
-import { ApplicationList } from './components/ApplicationList';
+import { NavigationTree } from './components/NavigationTree/NavigationTree';
+import { RangeFilter } from './components/RangeFilter/RangeFilter';
+import { ApplicationList } from './components/ApplicationList/ApplicationList';
 import { buildTree } from './utils/buildTree';
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner';
 
@@ -29,7 +29,11 @@ const App = ({ data }: { data: Data[] }) => {
 
   if (data.length === 0) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div
+        className="flex items-center justify-center h-screen"
+        role="status"
+        aria-live="polite"
+      >
         <LoadingSpinner />
         <span className="ml-2">Loading data...</span>
       </div>
