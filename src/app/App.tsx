@@ -44,8 +44,9 @@ const App = ({ data }: { data: Data[] }) => {
   return (
     <div className="App">
       <button
-        className="md:hidden text-white rounded flex items-center w-10 h-10"
+        className="md:hidden text-white flex items-center w-10 h-10"
         onClick={() => setIsMenuOpen(!isMenuOpen)}
+        role="menu-open"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -90,10 +91,12 @@ const App = ({ data }: { data: Data[] }) => {
           className={`md:hidden fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-black to-transparent p-8 rounded transform ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:flex md:flex-col md:min-w-fit md:mr-4 w-full`}
+          role="mobile-menu"
         >
           <button
             className="absolute top-4 right-4 p-2 bg-white text-black rounded-full flex items-center justify-center w-8 h-8"
             onClick={() => setIsMenuOpen(false)}
+            role="menu-close"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -104,4 +104,38 @@ describe('App Component', () => {
     // debug();
     expect(loadingMessage).toBeInTheDocument();
   });
+
+  // test menu open
+  it('should open the menu when the button is clicked', async () => {
+    await act(async () => {
+      render(<App data={mockData} />);
+    });
+
+    const menuButton = screen.getByRole('menu-open');
+    await act(async () => {
+      menuButton.click();
+    });
+
+    // debug();
+    const mobileMenu = screen.getByRole('mobile-menu');
+
+    expect(mobileMenu).toBeInTheDocument();
+  });
+
+  // menu close mobile menu to be hidden
+  it('should close the menu when the menu-close button is clicked', async () => {
+    await act(async () => {
+      render(<App data={mockData} />);
+    });
+
+    const menuButton = screen.getByRole('menu-close');
+    await act(async () => {
+      menuButton.click();
+    });
+
+    // debug();
+    const mobileMenu = screen.getByRole('mobile-menu');
+
+    expect(mobileMenu).toHaveClass('-translate-x-full');
+  });
 });
