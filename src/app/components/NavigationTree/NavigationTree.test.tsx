@@ -58,4 +58,29 @@ describe('NavigationTree Component', () => {
     fireEvent.click(nodeElement);
     expect(onSelectMock).toHaveBeenCalledWith('Node2');
   });
+
+  it('should call onSelect with the correct node name', () => {
+    const node = { name: 'Leaf', children: [] };
+    const onSelect = jest.fn();
+    const selected = 'false';
+
+    render(
+      <TreeNodeComponent
+        key={node.name}
+        node={node}
+        selected={selected}
+        onSelect={onSelect}
+      />
+    );
+
+    // Ensure the toggle button exists
+    const button = screen.getByRole('button', { name: node.name });
+    expect(button).toBeInTheDocument();
+
+    // Simulate click event
+    fireEvent.click(button);
+
+    // Check if onSelect was called with the correct argument
+    expect(onSelect).toHaveBeenCalledWith(node.name);
+  });
 });
