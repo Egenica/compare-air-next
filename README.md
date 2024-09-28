@@ -28,7 +28,7 @@ As an aid, the following data points typically follow a convention:
 - SRRI, is a sliding measure of risk between 0-10 where 10 zero is low risk, 10 is very high risk.
 - Portfolio.asset is traditionally displayed as a pie chart, where the values are percentages.
 
-You may refer to this page as a reference for similar functionality [(https://www.ajbell.co.uk/investment-ideas/ajbell-funds)]
+You may refer to this page as a reference for similar functionality [https://www.ajbell.co.uk/investment-ideas/ajbell-funds]
 
 ## APIs
 
