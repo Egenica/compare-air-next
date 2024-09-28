@@ -1,6 +1,4 @@
-# React Exercise
-
-This exercise is to help us better understand your experience in react and typescript, how you would go about structuring your work, code quality, styles, etc...
+# Front-end Engineering: Practical assessment
 
 ## Setup
 
@@ -10,27 +8,43 @@ Run the application with `npm run dev`.
 
 Launch application in browser at [http://localhost:3000](http://localhost:3000).
 
-## Task
+## Task Description
 
-We would like you to build a simple data explorer as shown in the image below. This is a wireframe to demonstrate how the app should look once complete. Do not add any additional dependencies and you do not need to amend the data service to complete this task.
+Candidates are asked to build a simple single page solution using frameworks of their choice that demonstrate their skill as a front-end engineer. The webpage will be based on existing functionality on our website and static hosted versions of the APIs are provided which you will need to consume to get the data.
 
-![React Exercise wireframe](/react-exercise.png)
+The solution should represent your own design inspiration and should not follow brand guidelines. We are looking for creativity, clean, testable and reusable code. Feel free to use whichever front-end and CSS frameworks you wish but be prepared to discuss your choices. Both the working website and the source code will be evaluated together along with the presentation.
 
-The data is stored in data.json file. Each application has 3 levels of business capabilities. Business capabilities are hierarchical as shown in the image (Business capability 1 -> Business capability 2 -> Business capability 3)
+For awareness, we use both React and NextJS as our main front-end frameworks written in Typescript.
 
-The app should -
+## Task Description
 
-- Requests the dataset.
-- Build a hierarchical navigation tree displaying the different levels of business capabilities. Bonus points if we can expand/collapse the navigation tree.
-- Have a range slider to be able to further filter the dataset based on the total spending value
-- Present a list of applications from the data set, showing name and total spend. The list depends on the navigation tree and the range filter
+You have been tasked with building a web page that allows a user to select between two investment strategies. One strategy has 3 fund options, the other has only a single fund option. Users should be able to select between either strategy and then select an individual fund. Once the fund is selected, you will need to display the information provided on the API links below. Each fund has its own hosted JSON file.
+
+Please follow your own design and layout.
+
+As an aid, the following data points typically follow a convention:
+
+- analystRating, is displayed as a star rating between 0-5.
+- SRRI, is a sliding measure of risk between 0-10 where 10 zero is low risk, 10 is very high risk.
+- Portfolio.asset is traditionally displayed as a pie chart, where the values are percentages.
+
+You may refer to this page as a reference for similar functionality ![(https://www.ajbell.co.uk/investment-ideas/ajbell-funds)]
 
 Additional notes
 
-- Please spend as much time as you feel necessary to complete the task and show off your skills.
-- We will be looking at code/file structure, code quality & best practices & design.
-- Add comments where necessary or to document any assumptions/considerations you may have.
-- You shouldn't need to use any external libraries
+Growth Funds Variations
+
+- Cautious BYW8RV9 [https://cdn.core3-dev.ajbbuild.uk/interview/BYW8RV9.json]
+
+- Balanced BYW8RX1 [https://cdn.core3-dev.ajbbuild.uk/interview/BYW8RX1.json]
+
+- Adventurous BYW8VG2 [https://cdn.core3-dev.ajbbuild.uk/interview/BYW8VG2.json]
+
+Responsible Growth Fund
+
+- Responsible BN0S2V9 [https://cdn.core3-dev.ajbbuild.uk/interview/BN0S2V9.json]
+
+Display what you can about each selected Fund using the data returned in the API in a visually appealing way.
 
 ## Lighthouse Audit Result
 
