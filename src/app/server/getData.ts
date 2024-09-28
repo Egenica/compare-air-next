@@ -1,15 +1,13 @@
-import fs from 'fs/promises';
-import { Data } from './../types/data';
+'use server';
 
-export const getData = async (): Promise<Data[]> => {
-  try {
-    const file = await fs.readFile(
-      process.cwd() + '/src/app/data.json',
-      'utf8'
-    );
-    const data: Data[] = JSON.parse(file);
-    return data;
-  } catch (error) {
-    throw new Error('Failed to fetch data');
+import { apiUrls } from './apiUrls';
+
+export const fetchFundData = async (fund: string) => {
+  const response = await fetch(apiUrls[fund], { cache: 'no-store' });
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch fund data');
   }
+
+  return response.json();
 };
