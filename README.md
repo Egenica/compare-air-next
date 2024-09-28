@@ -16,7 +16,7 @@ The solution should represent your own design inspiration and should not follow 
 
 For awareness, we use both React and NextJS as our main front-end frameworks written in Typescript.
 
-## Task Description
+## Scenario
 
 You have been tasked with building a web page that allows a user to select between two investment strategies. One strategy has 3 fund options, the other has only a single fund option. Users should be able to select between either strategy and then select an individual fund. Once the fund is selected, you will need to display the information provided on the API links below. Each fund has its own hosted JSON file.
 
@@ -30,14 +30,12 @@ As an aid, the following data points typically follow a convention:
 
 You may refer to this page as a reference for similar functionality ![(https://www.ajbell.co.uk/investment-ideas/ajbell-funds)]
 
-Additional notes
+## APIs
 
 Growth Funds Variations
 
 - Cautious BYW8RV9 [https://cdn.core3-dev.ajbbuild.uk/interview/BYW8RV9.json]
-
 - Balanced BYW8RX1 [https://cdn.core3-dev.ajbbuild.uk/interview/BYW8RX1.json]
-
 - Adventurous BYW8VG2 [https://cdn.core3-dev.ajbbuild.uk/interview/BYW8VG2.json]
 
 Responsible Growth Fund
@@ -49,5 +47,3 @@ Display what you can about each selected Fund using the data returned in the API
 ## Lighthouse Audit Result
 
 ![Lighthouse Result](/SCR-20240905-olzn.png)
-
--
