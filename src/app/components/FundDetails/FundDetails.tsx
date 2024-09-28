@@ -7,6 +7,7 @@ import { PortfolioPieChart } from '../PortfolioPieChart/PortfolioPieChart';
 import { fetchFundData } from '../../server/getData';
 import { Data } from '../../types/data';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { TopHoldingsBarChart } from '../TopHoldingsBarChart/TopHoldingsBarChart';
 
 interface FundDetailsProps {
   selectedFund: string;
@@ -50,19 +51,21 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
     );
   }
 
-  const { quote, profile, ratings, portfolio, documents } = fundData.data;
   const {
-    name,
-    marketCode,
-    lastPrice,
-    lastPriceDate,
-    ongoingCharge,
-    sectorName,
-    currency,
-  } = quote;
-  const { analystRating, SRRI } = ratings;
-  const { objective } = profile;
-  const { asset, top10Holdings } = portfolio;
+    quote: {
+      name,
+      marketCode,
+      lastPrice,
+      lastPriceDate,
+      ongoingCharge,
+      sectorName,
+      currency,
+    },
+    ratings: { analystRating, SRRI },
+    profile: { objective },
+    portfolio: { asset },
+    documents,
+  } = fundData.data;
 
   return (
     <div className="p-6 border rounded-lg bg-white shadow-lg">
@@ -101,16 +104,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
 
       {/* Top 10 Holdings */}
       <div className="mt-4">
-        <h3 className="font-bold">Top 10 Holdings:</h3>
-        <ul>
-          {top10Holdings.map(
-            (holding: { name: string; weighting: number }, index: number) => (
-              <li key={index}>
-                {holding.name}: {holding.weighting}%
-              </li>
-            )
-          )}
-        </ul>
+        <TopHoldingsBarChart holdings={fundData.data.portfolio.top10Holdings} />
       </div>
 
       {/* Documents */}
