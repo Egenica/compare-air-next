@@ -90,7 +90,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       {/* Fund Objective */}
       <div className="mt-4">
         <h3 className="font-bold">Objective:</h3>
-        <p>{objective}</p>
+        <p className="text-sm">{objective}</p>
       </div>
 
       {/* Portfolio Pie Chart */}

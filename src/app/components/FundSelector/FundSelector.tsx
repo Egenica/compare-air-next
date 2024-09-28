@@ -1,10 +1,8 @@
-// app/components/FundSelector.tsx
-
 import { useState } from 'react';
 
-interface FundSelectorProps {
+type FundSelectorProps = {
   onSelectFund: (fund: string) => void;
-}
+};
 
 const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
   const [strategy, setStrategy] = useState<string | null>(null);
@@ -61,7 +59,6 @@ const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
             onChange={handleFundChange}
           >
             <option value="">-- Select Fund --</option>
-            {/* <option value="responsible">Responsible</option> */}
             {responsibleFund.map((fund) => (
               <option key={fund} value={fund.toLowerCase()}>
                 {fund}

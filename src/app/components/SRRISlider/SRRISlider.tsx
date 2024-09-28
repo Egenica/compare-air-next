@@ -9,6 +9,11 @@ export const SRRISlider = ({ srri }: { srri: number }) => {
     return `rgb(${red}, ${green}, 0)`;
   };
 
+  // Return if the SRRI is not provided
+  if (!srri) {
+    return <div>No SRRI provided</div>;
+  }
+
   return (
     <div className="flex items-center mt-2">
       {[...Array(boxCount)].map((_, index) => (
