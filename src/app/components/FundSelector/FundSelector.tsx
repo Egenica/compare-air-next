@@ -27,6 +27,7 @@ const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
     localStorage.setItem('strategy', newStrategy);
     setSelectedFund('');
     onSelectFund(''); // Reset fund selection on strategy change
+    localStorage.removeItem('selectedFund'); // Clear selected fund from local storage
   };
 
   const handleFundChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
