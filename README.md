@@ -46,4 +46,4 @@ Display what you can about each selected Fund using the data returned in the API
 
 ## Lighthouse Audit Result
 
-![Lighthouse Result](/SCR-20240905-olzn.png)
+![Lighthouse Result](/Screenshot-lighthouse.png)
