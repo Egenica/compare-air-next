@@ -78,8 +78,8 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
         <span className="font-bold">Market Code:</span> {marketCode}
       </p>
       <p>
-        <span className="font-bold">Last Price</span> {lastPrice} {currency} (as
-        of {lastPriceDate})
+        <span className="font-bold">Last Price:</span> {lastPrice} {currency}{' '}
+        (as of {lastPriceDate})
       </p>
       <p>
         <span className="font-bold">Ongoing Charge:</span> {ongoingCharge}%

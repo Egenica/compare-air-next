@@ -38,7 +38,7 @@ const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
   };
 
   return (
-    <div className="p-6 border rounded-lg bg-white shadow-lg">
+    <div className="p-6 border rounded-lg bg-white shadow-lg md:sticky md:top-6">
       <h2 className="text-2xl font-bold mb-4">Choose a Strategy</h2>
       <div className="mb-4">
         <label className="block mb-2">
