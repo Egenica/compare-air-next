@@ -1,3 +1,5 @@
+import 'jest-canvas-mock';
+
 HTMLCanvasElement.prototype.getContext = () => {
   // Return a mock context object
   return {
