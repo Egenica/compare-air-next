@@ -71,7 +71,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
   return (
     <div className="p-6 border rounded-lg bg-white shadow-lg">
       {/* Fund Name and Information */}
-      <h2 className="text-2xl font-bold mb-4">{name}</h2>
+      <h2 className="text-2xl font-bold mb-4 border-b pb-2">{name}</h2>
       <p>
         <span className="font-bold">Market Code:</span> {marketCode}
       </p>
