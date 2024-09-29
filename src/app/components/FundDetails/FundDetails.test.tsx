@@ -1,5 +1,5 @@
 import React, { act } from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import FundDetails from './FundDetails';
 import { fetchFundData } from '../../server/getData';
@@ -63,5 +63,22 @@ describe('FundDetails Component', () => {
       expect(screen.getByText('Test Sector')).toBeInTheDocument();
       expect(screen.getByText('Test Objective')).toBeInTheDocument();
     });
+  });
+  it('should open a new window with the correct URL when the button is clicked', async () => {
+    const doc = { url: 'http://example.com', type: 'PDF' };
+    await act(async () => {
+      render(<FundDetails selectedFund="test-fund" />);
+    });
+
+    const button = screen.getByText(doc.type);
+    window.open = jest.fn();
+
+    fireEvent.click(button);
+
+    expect(window.open).toHaveBeenCalledWith(
+      doc.url,
+      '_blank',
+      'noopener,noreferrer'
+    );
   });
 });
