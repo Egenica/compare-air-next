@@ -15,6 +15,7 @@ export const PortfolioPieChart = ({
   portfolio: PortfolioAsset[];
 }) => {
   const labels = portfolio.map((asset: PortfolioAsset) => asset.label);
+
   const data = portfolio.map((asset: PortfolioAsset) => asset.value);
 
   const chartData = {
