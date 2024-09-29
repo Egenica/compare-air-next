@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import FundSelector from './components/FundSelector/FundSelector';
 import FundDetails from './components/FundDetails/FundDetails';
-
 export default function Home() {
   const [selectedFund, setSelectedFund] = useState<string | null>(null);
 
@@ -15,11 +14,13 @@ export default function Home() {
       <h1 className="text-4xl font-thin text-white mb-8">
         <span className="font-bold">AJ Bell</span> Investment Strategy Selector
       </h1>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="lg:col-span-1">
           <FundSelector onSelectFund={handleFundSelection} />
         </div>
-        <div>{selectedFund && <FundDetails selectedFund={selectedFund} />}</div>
+        <div className="lg:col-span-2">
+          {selectedFund && <FundDetails selectedFund={selectedFund} />}
+        </div>
       </div>
     </div>
   );

@@ -52,6 +52,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
   }
 
   const {
+    // Destructure the fund data object
     quote: {
       name,
       marketCode,
@@ -71,12 +72,19 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
     <div className="p-6 border rounded-lg bg-white shadow-lg">
       {/* Fund Name and Information */}
       <h2 className="text-2xl font-bold mb-4">{name}</h2>
-      <p>Market Code: {marketCode}</p>
       <p>
-        Last Price: {lastPrice} {currency} (as of {lastPriceDate})
+        <span className="font-bold">Market Code:</span> {marketCode}
       </p>
-      <p>Ongoing Charge: {ongoingCharge}%</p>
-      <p>Sector: {sectorName}</p>
+      <p>
+        <span className="font-bold">Last Price</span> {lastPrice} {currency} (as
+        of {lastPriceDate})
+      </p>
+      <p>
+        <span className="font-bold">Ongoing Charge:</span> {ongoingCharge}%
+      </p>
+      <p>
+        <span className="font-bold">Sector:</span> {sectorName}
+      </p>
 
       {/* Analyst Rating as Star Rating */}
       <div className="mt-4">
@@ -110,12 +118,17 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       {/* Documents */}
       <div className="mt-4">
         <h3 className="font-bold">Documents:</h3>
-        <ul>
+        <ul className="flex gap-2 mt-3">
           {documents.map((doc: { id: string; url: string; type: string }) => (
             <li key={doc.id}>
-              <a href={doc.url} target="_blank" rel="noopener noreferrer">
+              <button
+                onClick={() =>
+                  window.open(doc.url, '_blank', 'noopener,noreferrer')
+                }
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
                 {doc.type}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
