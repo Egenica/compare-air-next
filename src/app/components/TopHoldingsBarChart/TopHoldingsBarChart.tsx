@@ -24,11 +24,7 @@ export const TopHoldingsBarChart = ({
   holdings: { name: string; weighting: number }[];
 }) => {
   const data = {
-    labels: holdings.map((holding) =>
-      holding.name.length > 6
-        ? holding.name.substring(0, 6) + '...'
-        : holding.name
-    ),
+    labels: holdings.map((holding) => holding.name.split(' ')[0]),
     datasets: [
       {
         label: 'Weighting (%)',
