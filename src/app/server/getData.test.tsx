@@ -1,35 +1,57 @@
 import '@testing-library/jest-dom';
-import fetchMock from 'jest-fetch-mock';
 import { fetchFundData } from './getData';
-import { apiUrls } from './apiUrls';
 
-fetchMock.enableMocks();
-
-beforeEach(() => {
-  fetchMock.resetMocks();
-});
+jest.mock('./apiUrls', () => ({
+  apiUrls: {
+    fund1: 'https://api.example.com/fund1',
+    fund2: 'https://api.example.com/fund2',
+  },
+}));
 
 describe('fetchFundData', () => {
-  // fetches data successfully for a valid fund
-  it('should fetch data successfully when a valid fund is provided', async () => {
-    const mockResponse = { data: 'some data' };
-    fetchMock.mockResponseOnce(JSON.stringify(mockResponse));
-
-    const fund = 'validFund';
-    const data = await fetchFundData(fund);
-
-    expect(data).toEqual(mockResponse);
-    expect(fetchMock).toHaveBeenCalledWith(apiUrls[fund], {
-      cache: 'no-store',
-    });
+  beforeEach(() => {
+    global.fetch = jest.fn();
   });
 
-  // throws error when fund is not in apiUrls
-  it('should throw an error when the fund is not in apiUrls', async () => {
-    const fund = 'invalidFund';
+  afterEach(() => {
+    jest.resetAllMocks();
+  });
 
-    await expect(fetchFundData(fund)).rejects.toThrow(
-      `Fund ${fund} not found in apiUrls`
+  it('should throw an error if the fund is not found in apiUrls', async () => {
+    await expect(fetchFundData('unknownFund')).rejects.toThrow(
+      'Fund not found in apiUrls'
+    );
+  });
+
+  it('should throw an error if the network response is not ok', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: false,
+    });
+
+    await expect(fetchFundData('fund1')).rejects.toThrow(
+      'Network response was not ok'
+    );
+  });
+
+  it('should return data if the fetch is successful and response is valid JSON', async () => {
+    const mockData = { key: 'value' };
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockResolvedValue(mockData),
+    });
+
+    const data = await fetchFundData('fund1');
+    expect(data).toEqual(mockData);
+  });
+
+  it('should throw an error if the response is not valid JSON', async () => {
+    (global.fetch as jest.Mock).mockResolvedValue({
+      ok: true,
+      json: jest.fn().mockRejectedValue(new Error('Invalid JSON')),
+    });
+
+    await expect(fetchFundData('fund1')).rejects.toThrow(
+      'Failed to parse response as JSON'
     );
   });
 });

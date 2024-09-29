@@ -22,7 +22,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       fetchFundData(selectedFund)
         .then((data) => {
           setFundData(data);
-          console.log(data); // This will log the fetched fund data
+          //console.log(data); // This will log the fetched fund data
         })
         .catch(() => {
           setError(true);
@@ -46,7 +46,9 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
         aria-live="polite"
       >
         <LoadingSpinner />
-        <span className="ml-2 text-white">Loading data...</span>
+        <span className="ml-2 text-white" data-testid="loading-spinner">
+          Loading data...
+        </span>
       </div>
     );
   }
@@ -112,6 +114,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
 
       {/* Top 10 Holdings */}
       <div className="mt-4">
+        <h3 className="font-bold">Top 10 Holdings:</h3>
         <TopHoldingsBarChart holdings={fundData.data.portfolio.top10Holdings} />
       </div>
 

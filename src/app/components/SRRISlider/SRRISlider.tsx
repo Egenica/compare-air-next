@@ -1,7 +1,6 @@
 export const SRRISlider = ({ srri }: { srri: number }) => {
   const boxCount = 10;
 
-  // Function to generate the color gradient from green to red
   const getColor = (index: number) => {
     const ratio = index / (boxCount - 1); // Normalize the index to range from 0 to 1
     const red = Math.floor(255 * ratio);
@@ -9,7 +8,6 @@ export const SRRISlider = ({ srri }: { srri: number }) => {
     return `rgb(${red}, ${green}, 0)`;
   };
 
-  // Return if the SRRI is not provided
   if (!srri) {
     return <div>No SRRI provided</div>;
   }
@@ -21,7 +19,7 @@ export const SRRISlider = ({ srri }: { srri: number }) => {
           key={index}
           className={`w-6 h-6 mx-1 rounded-sm 
                 ${index < srri ? 'border border-gray-700' : ''} 
-                ${index === srri - 1 ? 'border-4 border-black' : ''}`} // Highlight the current SRRI box with a thick border
+                ${index === srri - 1 ? 'border-4 border-black' : ''}`}
           style={{ backgroundColor: getColor(index) }}
         ></div>
       ))}

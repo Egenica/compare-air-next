@@ -1,32 +1,15 @@
 import '@testing-library/jest-dom';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import Home from './App';
 
-import Home from './page';
-import { getData } from './server/getData';
-import { Data } from './types/data';
+describe('Home Component', () => {
+  it('should render without crashing', () => {
+    const { container } = render(<Home />);
+    expect(container).toBeInTheDocument();
+  });
 
-const mockData: Data[] = [
-  {
-    id: 'app-1',
-    name: 'Application 1',
-    spend: 29822,
-    BCAP1: 'Business Capability 1',
-    BCAP2: 'Business Capability 1.2',
-    BCAP3: 'Business Capability 1.2.3',
-  },
-];
-
-// Mock the getData function
-jest.mock('./server/getData');
-const mockedGetData = getData as jest.MockedFunction<typeof getData>;
-
-describe('Home', () => {
-  it('should return App component with fetched data when getData resolves with data', async () => {
-    mockedGetData.mockResolvedValueOnce(mockData);
-
-    const homeComp = await Home(); // server-side rendered component needs to be awaited
-
-    const { getByText } = render(homeComp);
-    await waitFor(() => expect(getByText('Application 1')).toBeInTheDocument());
+  it('should render the App component', () => {
+    const { getByText } = render(<Home />);
+    expect(getByText('AJ Bell')).toBeInTheDocument();
   });
 });
