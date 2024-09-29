@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 type FundSelectorProps = {
   onSelectFund: (fund: string) => void;
@@ -6,17 +6,34 @@ type FundSelectorProps = {
 
 const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
   const [strategy, setStrategy] = useState<string | null>(null);
+  const [selectedFund, setSelectedFund] = useState<string>('');
 
   const growthFunds = ['Cautious', 'Balanced', 'Adventurous'];
   const responsibleFund = ['Responsible'];
 
+  useEffect(() => {
+    const savedStrategy = localStorage.getItem('strategy');
+    const savedFund = localStorage.getItem('selectedFund');
+    if (savedStrategy) setStrategy(savedStrategy);
+    if (savedFund) {
+      setSelectedFund(savedFund);
+      onSelectFund(savedFund);
+    }
+  }, [onSelectFund]);
+
   const handleStrategyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setStrategy(e.target.value);
+    const newStrategy = e.target.value;
+    setStrategy(newStrategy);
+    localStorage.setItem('strategy', newStrategy);
+    setSelectedFund('');
     onSelectFund(''); // Reset fund selection on strategy change
   };
 
   const handleFundChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onSelectFund(e.target.value);
+    const newFund = e.target.value;
+    setSelectedFund(newFund);
+    localStorage.setItem('selectedFund', newFund);
+    onSelectFund(newFund);
   };
 
   return (
@@ -27,6 +44,7 @@ const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
           Select Strategy:
           <select
             className="w-full p-2 border rounded"
+            value={strategy || ''}
             onChange={handleStrategyChange}
           >
             <option value="">-- Select Strategy --</option>
@@ -42,6 +60,7 @@ const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
             Select Growth Fund:
             <select
               className="w-full p-2 border rounded"
+              value={selectedFund}
               onChange={handleFundChange}
             >
               <option value="">-- Select Fund --</option>
@@ -60,6 +79,7 @@ const FundSelector: React.FC<FundSelectorProps> = ({ onSelectFund }) => {
           <label className="block mb-2">Select Responsible Fund:</label>
           <select
             className="w-full p-2 border rounded"
+            value={selectedFund}
             onChange={handleFundChange}
           >
             <option value="">-- Select Fund --</option>
