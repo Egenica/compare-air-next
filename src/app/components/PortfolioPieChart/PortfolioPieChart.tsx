@@ -3,11 +3,10 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// Pie chart component
-interface PortfolioAsset {
+type PortfolioAsset = {
   label: string;
   value: number;
-}
+};
 
 export const PortfolioPieChart = ({
   portfolio,

@@ -9,9 +9,9 @@ import { Data } from '../../types/data';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { TopHoldingsBarChart } from '../TopHoldingsBarChart/TopHoldingsBarChart';
 
-interface FundDetailsProps {
+type FundDetailsProps = {
   selectedFund: string;
-}
+};
 
 const FundDetails = ({ selectedFund }: FundDetailsProps) => {
   const [fundData, setFundData] = useState<Data | null>(null);
@@ -22,7 +22,6 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       fetchFundData(selectedFund)
         .then((data) => {
           setFundData(data);
-          //console.log(data); // This will log the fetched fund data
         })
         .catch(() => {
           setError(true);
@@ -54,7 +53,6 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
   }
 
   const {
-    // Destructure the fund data object
     quote: {
       name,
       marketCode,
