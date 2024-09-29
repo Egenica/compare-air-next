@@ -10,7 +10,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-2 md:p-6">
       <h1 className="text-4xl font-thin text-white mb-8">
         <span className="font-bold">AJ Bell</span> Investment Strategy Selector
       </h1>
