@@ -38,12 +38,17 @@ export const TopHoldingsBarChart = ({
 
   const options = {
     indexAxis: 'y' as const,
+    responsive: true,
+    maintainAspectRatio: true,
+    aspectRatio: 1.5,
     scales: {
       x: {
-        beginAtZero: true,
+        ticks: {
+          autoSkip: false,
+          maxTicksLimit: 5,
+        },
       },
     },
-    responsive: true,
     plugins: {
       legend: {
         display: false,
