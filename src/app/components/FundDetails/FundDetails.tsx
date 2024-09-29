@@ -113,6 +113,10 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       {/* Top 10 Holdings */}
       <div className="mt-4">
         <h3 className="font-bold">Top 10 Holdings:</h3>
+        <p className="text-xs">
+          <span className="md:hidden">Tap</span>
+          <span className="hidden md:inline">Hover over</span> for more details
+        </p>
         <TopHoldingsBarChart holdings={fundData.data.portfolio.top10Holdings} />
       </div>
 
