@@ -12,6 +12,7 @@
     "jest-preview": "jest-preview"
   },
   "dependencies": {
+    "@nivo/pie": "^0.87.0",
     "chart.js": "^4.4.4",
     "next": "14.2.8",
     "react": "^18",

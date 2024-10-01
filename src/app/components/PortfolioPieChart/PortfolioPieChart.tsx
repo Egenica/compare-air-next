@@ -1,7 +1,5 @@
-import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
-ChartJS.register(ArcElement, Tooltip, Legend);
+import { ResponsivePie, PieTooltipProps } from '@nivo/pie';
+import { colors } from './colors';
 
 type PortfolioAsset = {
   label: string;
@@ -13,32 +11,49 @@ export const PortfolioPieChart = ({
 }: {
   portfolio: PortfolioAsset[];
 }) => {
-  const labels = portfolio.map((asset: PortfolioAsset) => asset.label);
+  const data = portfolio.map((asset: PortfolioAsset) => ({
+    id: asset.label,
+    label: asset.label,
+    value: Math.round(asset.value),
+  }));
 
-  const data = portfolio.map((asset: PortfolioAsset) => asset.value);
+  const Tooltip = ({ datum }: PieTooltipProps<PortfolioAsset>) => (
+    <div className="p-1 bg-white border border-gray-300">
+      <strong>{datum.id}</strong>: {datum.value}%
+    </div>
+  );
 
-  const chartData = {
-    labels: labels,
-    datasets: [
-      {
-        data: data,
-        backgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#4BC0C0',
-          '#9966FF',
-        ],
-        hoverBackgroundColor: [
-          '#FF6384',
-          '#36A2EB',
-          '#FFCE56',
-          '#4BC0C0',
-          '#9966FF',
-        ],
-      },
-    ],
-  };
-
-  return <Pie data={chartData} />;
+  return (
+    <>
+      <div className="flex gap-1 md:gap-5 my-3 items-center justify-center">
+        {data.map((item, i) => (
+          <div key={item.id} className="legend-item flex items-center">
+            <div
+              style={{
+                backgroundColor: colors[i],
+              }}
+              className="w-4 h-4 rounded-full mr-1"
+            ></div>
+            <span className="text-xs">{item.label}</span>
+          </div>
+        ))}
+      </div>
+      <div style={{ aspectRatio: 1 / 1 }}>
+        <ResponsivePie
+          data={data}
+          margin={{ top: 10, right: 8, bottom: 8, left: 8 }}
+          innerRadius={0.5}
+          padAngle={0.7}
+          cornerRadius={3}
+          colors={colors.map((color) => color)}
+          borderWidth={1}
+          borderColor={{ from: 'color', modifiers: [['darker', 0.8]] }}
+          enableArcLabels={false}
+          enableArcLinkLabels={false}
+          activeOuterRadiusOffset={8}
+          tooltip={Tooltip}
+        />
+      </div>
+    </>
+  );
 };
