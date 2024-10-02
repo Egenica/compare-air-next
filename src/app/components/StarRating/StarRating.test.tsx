@@ -31,4 +31,10 @@ describe('StarRating Component', () => {
     expect(fullStars.length).toBe(5);
     expect(emptyStars.length).toBe(0);
   });
+
+  it('calculates empty stars correctly', () => {
+    render(<StarRating rating={3} />);
+    const emptyStars = screen.queryAllByText('☆').length;
+    expect(emptyStars).toBe(2); // Assuming a total of 5 stars, 5 - 3 = 2
+  });
 });
