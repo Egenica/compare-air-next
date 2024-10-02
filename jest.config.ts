@@ -8,9 +8,9 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const config: Config = {
-  setupFiles: ['<rootDir>/jest.setup.js'],
   coverageProvider: 'v8',
   testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // tsx
   // moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   // Add more setup options before each test is run
@@ -22,6 +22,7 @@ const config: Config = {
   // Mock CSS/SCSS module files using `identity-obj-proxy`
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy', // Map the pattern to the mock
+    '^d3-(.*)$': '<rootDir>/node_modules/d3-$1/dist/d3-$1.min.js', // Fix for d3 Jest error
   },
 };
 

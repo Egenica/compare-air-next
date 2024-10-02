@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { StarRating } from '../StarRating/StarRating';
 import { SRRISlider } from '../SRRISlider/SRRISlider';
-import { PortfolioPieChart } from '../PortfolioPieChart/PortfolioPieChart';
+import PortfolioPieChart from '../PortfolioPieChart/PortfolioPieChart';
 import { fetchFundData } from '../../server/getData';
 import { Data } from '../../types/data';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';

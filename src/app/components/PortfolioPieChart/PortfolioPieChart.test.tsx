@@ -1,67 +1,64 @@
+import '@testing-library/jest-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
-import { PortfolioPieChart } from './PortfolioPieChart';
-import { Pie } from 'react-chartjs-2';
+import '@testing-library/jest-dom';
+import PortfolioPieChart from './PortfolioPieChart';
+//import { PortfolioAsset } from './PortfolioPieChart';
+import { colors } from './colors';
+import { ResponsivePie } from '@nivo/pie';
 
-jest.mock('react-chartjs-2', () => ({
-  Pie: jest.fn(() => null),
+type PortfolioAsset = {
+  label: string;
+  value: number;
+};
+
+jest.mock('@nivo/pie', () => ({
+  ResponsivePie: jest.fn(() => <div data-testid="responsive-pie" />),
 }));
 
 describe('PortfolioPieChart', () => {
-  const mockPortfolio = [
-    { label: 'Stocks', value: 50 },
-    { label: 'Bonds', value: 30 },
-    { label: 'Real Estate', value: 20 },
+  const mockPortfolio: PortfolioAsset[] = [
+    { label: 'Asset 1', value: 10.5 },
+    { label: 'Asset 2', value: 20.3 },
+    { label: 'Asset 3', value: 30.7 },
   ];
 
-  it('renders without crashing', () => {
+  it('should correctly map the portfolio prop to the data array with rounded values', () => {
     render(<PortfolioPieChart portfolio={mockPortfolio} />);
-  });
+    const expectedData = [
+      { id: 'Asset 1', label: 'Asset 1', value: 11 },
+      { id: 'Asset 2', label: 'Asset 2', value: 20 },
+      { id: 'Asset 3', label: 'Asset 3', value: 31 },
+    ];
 
-  it('correctly processes the portfolio prop', () => {
-    render(<PortfolioPieChart portfolio={mockPortfolio} />);
-    expect(Pie).toHaveBeenCalledWith(
+    expect(ResponsivePie).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expect.objectContaining({
-          labels: ['Stocks', 'Bonds', 'Real Estate'],
-          datasets: [
-            expect.objectContaining({
-              data: [50, 30, 20],
-            }),
-          ],
-        }),
+        data: expectedData,
       }),
       {}
     );
   });
 
-  it('generates correct chart data from portfolio prop', () => {
+  const mockDatum = {
+    id: 'Stocks',
+    value: 50,
+  };
+
+  it('renders Tooltip with correct data', () => {
+    const { container } = render(
+      <div className="p-1 bg-white border border-gray-300">
+        <strong>{mockDatum.id}</strong>: {mockDatum.value}%
+      </div>
+    );
+
+    expect(container.textContent).toBe('Stocks: 50%');
+  });
+
+  it('should render the pie chart with the correct colors from the colors array', () => {
     render(<PortfolioPieChart portfolio={mockPortfolio} />);
-    const expectedData = {
-      labels: ['Stocks', 'Bonds', 'Real Estate'],
-      datasets: [
-        {
-          data: [50, 30, 20],
-          backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            '#4BC0C0',
-            '#9966FF',
-          ],
-          hoverBackgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            '#4BC0C0',
-            '#9966FF',
-          ],
-        },
-      ],
-    };
-    expect(Pie).toHaveBeenCalledWith(
+    expect(ResponsivePie).toHaveBeenCalledWith(
       expect.objectContaining({
-        data: expectedData,
+        colors: colors.map((color) => color),
       }),
       {}
     );
