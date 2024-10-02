@@ -10,9 +10,7 @@ export const StarRating = ({ rating }: { rating: number }) => {
       ))}
       {halfStar && <span>&#9734;</span>}
       {[...Array(emptyStars)].map((_, index) => (
-        <span key={index} className="empty-star">
-          &#9734;
-        </span> // Empty star
+        <span key={index}>&#9734;</span> // Empty star
       ))}
     </div>
   );
