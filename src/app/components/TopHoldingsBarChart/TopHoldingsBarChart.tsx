@@ -25,7 +25,6 @@ export const TopHoldingsBarChart = ({
       nameCount.set(item.name, 1);
     }
   });
-  console.log(data);
 
   if (!data || data.length === 0) {
     return <div>No data available</div>;
