@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 import FundDetails from './FundDetails';
 import { fetchFundData } from '../../server/getData';
 import { mockFundData } from './data.mock';
-import 'jest-canvas-mock';
 
 jest.mock('../../server/getData');
 
