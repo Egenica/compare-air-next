@@ -37,7 +37,7 @@ const PortfolioPieChart = ({ portfolio }: { portfolio: PortfolioAsset[] }) => {
       <div style={{ aspectRatio: 1 / 1 }}>
         <ResponsivePie
           data={data}
-          margin={{ top: 10, right: 8, bottom: 8, left: 8 }}
+          margin={{ top: 10, right: 8, bottom: 10, left: 8 }}
           innerRadius={0.5}
           padAngle={0.7}
           cornerRadius={3}
