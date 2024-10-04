@@ -17,7 +17,31 @@ describe('LoadingSpinner Component', () => {
 
   test('has the correct class name', () => {
     const { container } = render(<LoadingSpinner />);
-    const spinnerElement = container.firstChild;
+    const spinnerElement = container.querySelector('.lds-ring');
     expect(spinnerElement).toHaveClass('lds-ring');
+  });
+
+  test('renders the loading text', () => {
+    const { getByTestId } = render(
+      <LoadingSpinner loadingText="Loading data..." />
+    );
+    expect(getByTestId('loading-spinner')).toHaveTextContent('Loading data...');
+  });
+
+  test('renders the default loading text', () => {
+    const { getByTestId } = render(<LoadingSpinner />);
+    expect(getByTestId('loading-spinner')).toHaveTextContent('Loading...');
+  });
+
+  test('renders the default text color class', () => {
+    const { getByTestId } = render(<LoadingSpinner />);
+    expect(getByTestId('loading-spinner')).toHaveClass('text-white');
+  });
+
+  test('renders the custom text color class', () => {
+    const { getByTestId } = render(
+      <LoadingSpinner textColorClass="text-black" />
+    );
+    expect(getByTestId('loading-spinner')).toHaveClass('text-black');
   });
 });

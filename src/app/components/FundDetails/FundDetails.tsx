@@ -23,8 +23,6 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
   const [error, setError] = useState(false);
   const [renderLazy, isVisible] = useIntersectionObserver({ threshold: 0.5 });
 
-  console.log('FundDetails.tsx: isVisible', isVisible);
-
   useEffect(() => {
     if (selectedFund) {
       fetchFundData(selectedFund)
@@ -46,18 +44,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
   }
 
   if (!fundData) {
-    return (
-      <div
-        className="flex items-center justify-center h-screen"
-        role="status"
-        aria-live="polite"
-      >
-        <LoadingSpinner />
-        <span className="ml-2 text-white" data-testid="loading-spinner">
-          Loading data...
-        </span>
-      </div>
-    );
+    return <LoadingSpinner loadingText=" Loading data..." />;
   }
 
   const {
@@ -111,7 +98,14 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       </div>
       {/* Portfolio Pie Chart */}
       {isVisible && (
-        <Suspense fallback={<LoadingSpinner />}>
+        <Suspense
+          fallback={
+            <LoadingSpinner
+              loadingText="Loading charts..."
+              textColorClass="text-black"
+            />
+          }
+        >
           <div className="mt-4">
             <h3 className="font-bold">Portfolio Allocation:</h3>
             <PortfolioPieChart portfolio={asset} />
