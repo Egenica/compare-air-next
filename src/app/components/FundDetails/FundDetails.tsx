@@ -127,7 +127,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
           </div>
         </Suspense>
       )}
-      ;{/* Documents */}
+      {/* Documents */}
       <div className="mt-4">
         <h3 className="font-bold">Documents:</h3>
         <ul className="flex gap-2 mt-3">
