@@ -1,13 +1,17 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { StarRating } from '../StarRating/StarRating';
 import { SRRISlider } from '../SRRISlider/SRRISlider';
-import { PortfolioPieChart } from '../PortfolioPieChart/PortfolioPieChart';
 import { fetchFundData } from '../../server/getData';
 import { Data } from '../../types/data';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
-import { TopHoldingsBarChart } from '../TopHoldingsBarChart/TopHoldingsBarChart';
+const PortfolioPieChart = lazy(
+  () => import('../PortfolioPieChart/PortfolioPieChart')
+);
+const TopHoldingsBarChart = lazy(
+  () => import('../TopHoldingsBarChart/TopHoldingsBarChart')
+);
 
 type FundDetailsProps = {
   selectedFund: string;
@@ -107,7 +111,10 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       {/* Portfolio Pie Chart */}
       <div className="mt-4">
         <h3 className="font-bold">Portfolio Allocation:</h3>
-        <PortfolioPieChart portfolio={asset} />
+        {/* <PortfolioPieChart portfolio={asset} /> */}
+        <Suspense fallback={<LoadingSpinner />}>
+          <PortfolioPieChart portfolio={asset} />
+        </Suspense>
       </div>
 
       {/* Top 10 Holdings */}
@@ -117,7 +124,11 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
           <span className="md:hidden">Tap</span>
           <span className="hidden md:inline">Hover over</span> for more details
         </p>
-        <TopHoldingsBarChart holdings={fundData.data.portfolio.top10Holdings} />
+        <Suspense fallback={<LoadingSpinner />}>
+          <TopHoldingsBarChart
+            holdings={fundData.data.portfolio.top10Holdings}
+          />
+        </Suspense>
       </div>
 
       {/* Documents */}

@@ -6,11 +6,7 @@ type PortfolioAsset = {
   value: number;
 };
 
-export const PortfolioPieChart = ({
-  portfolio,
-}: {
-  portfolio: PortfolioAsset[];
-}) => {
+const PortfolioPieChart = ({ portfolio }: { portfolio: PortfolioAsset[] }) => {
   const data = portfolio.map((asset: PortfolioAsset) => ({
     id: asset.label,
     label: asset.label,
@@ -57,3 +53,5 @@ export const PortfolioPieChart = ({
     </>
   );
 };
+
+export default PortfolioPieChart;

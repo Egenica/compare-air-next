@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import { PortfolioPieChart } from './PortfolioPieChart';
+import PortfolioPieChart from './PortfolioPieChart';
 import { colors } from './colors';
 import { ResponsivePie } from '@nivo/pie';
 

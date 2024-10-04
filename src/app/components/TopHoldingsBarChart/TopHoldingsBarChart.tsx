@@ -1,7 +1,7 @@
 import React from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 
-export const TopHoldingsBarChart = ({
+const TopHoldingsBarChart = ({
   holdings,
 }: {
   holdings: { name: string; weighting: number }[];
@@ -78,3 +78,5 @@ export const TopHoldingsBarChart = ({
     </div>
   );
 };
+
+export default TopHoldingsBarChart;
