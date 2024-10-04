@@ -20,7 +20,7 @@ const useIntersectionObserver = (options: IntersectionObserverInit) => {
         observer.unobserve(ref.current);
       }
     };
-  }, [options]);
+  }, [options, isVisible]);
 
   return [ref, isVisible] as const;
 };
