@@ -5,3 +5,10 @@ class ResizeObserver {
 }
 
 global.ResizeObserver = ResizeObserver;
+
+global.IntersectionObserver = class {
+  constructor() {}
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+};

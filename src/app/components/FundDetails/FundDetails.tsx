@@ -12,6 +12,7 @@ const PortfolioPieChart = lazy(
 const TopHoldingsBarChart = lazy(
   () => import('../TopHoldingsBarChart/TopHoldingsBarChart')
 );
+import useIntersectionObserver from '../hooks/useIntersectionObserver';
 
 type FundDetailsProps = {
   selectedFund: string;
@@ -20,6 +21,9 @@ type FundDetailsProps = {
 const FundDetails = ({ selectedFund }: FundDetailsProps) => {
   const [fundData, setFundData] = useState<Data | null>(null);
   const [error, setError] = useState(false);
+  const [renderLazy, isVisible] = useIntersectionObserver({ threshold: 0.5 });
+
+  console.log('FundDetails.tsx: isVisible', isVisible);
 
   useEffect(() => {
     if (selectedFund) {
@@ -89,47 +93,46 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       <p>
         <span className="font-bold">Sector:</span> {sectorName}
       </p>
-
       {/* Analyst Rating as Star Rating */}
       <div className="mt-4">
         <h3 className="font-bold">Analyst Rating:</h3>
         <StarRating rating={analystRating} />
       </div>
-
       {/* SRRI as a Risk Slider */}
       <div className="mt-4">
         <h3 className="font-bold">Risk (SRRI):</h3>
         <SRRISlider srri={SRRI} />
       </div>
-
       {/* Fund Objective */}
       <div className="mt-4">
         <h3 className="font-bold">Objective:</h3>
         <p className="text-sm">{objective}</p>
+        <div ref={renderLazy}></div>
       </div>
-
       {/* Portfolio Pie Chart */}
-      <Suspense fallback={<LoadingSpinner />}>
-        <div className="mt-4">
-          <h3 className="font-bold">Portfolio Allocation:</h3>
-          <PortfolioPieChart portfolio={asset} />
-        </div>
+      {isVisible && (
+        <Suspense fallback={<LoadingSpinner />}>
+          <div className="mt-4">
+            <h3 className="font-bold">Portfolio Allocation:</h3>
+            <PortfolioPieChart portfolio={asset} />
+          </div>
 
-        {/* Top 10 Holdings */}
-        <div className="mt-4">
-          <h3 className="font-bold">Top 10 Holdings:</h3>
-          <p className="text-xs">
-            <span className="md:hidden">Tap</span>
-            <span className="hidden md:inline">Hover over</span> for more
-            details
-          </p>
+          {/* Top 10 Holdings */}
+          <div className="mt-4">
+            <h3 className="font-bold">Top 10 Holdings:</h3>
+            <p className="text-xs">
+              <span className="md:hidden">Tap</span>
+              <span className="hidden md:inline">Hover over</span> for more
+              details
+            </p>
 
-          <TopHoldingsBarChart
-            holdings={fundData.data.portfolio.top10Holdings}
-          />
-        </div>
-      </Suspense>
-      {/* Documents */}
+            <TopHoldingsBarChart
+              holdings={fundData.data.portfolio.top10Holdings}
+            />
+          </div>
+        </Suspense>
+      )}
+      ;{/* Documents */}
       <div className="mt-4">
         <h3 className="font-bold">Documents:</h3>
         <ul className="flex gap-2 mt-3">
