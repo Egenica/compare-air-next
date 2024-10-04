@@ -109,28 +109,26 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
       </div>
 
       {/* Portfolio Pie Chart */}
-      <div className="mt-4">
-        <h3 className="font-bold">Portfolio Allocation:</h3>
-        {/* <PortfolioPieChart portfolio={asset} /> */}
-        <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner />}>
+        <div className="mt-4">
+          <h3 className="font-bold">Portfolio Allocation:</h3>
           <PortfolioPieChart portfolio={asset} />
-        </Suspense>
-      </div>
+        </div>
 
-      {/* Top 10 Holdings */}
-      <div className="mt-4">
-        <h3 className="font-bold">Top 10 Holdings:</h3>
-        <p className="text-xs">
-          <span className="md:hidden">Tap</span>
-          <span className="hidden md:inline">Hover over</span> for more details
-        </p>
-        <Suspense fallback={<LoadingSpinner />}>
+        {/* Top 10 Holdings */}
+        <div className="mt-4">
+          <h3 className="font-bold">Top 10 Holdings:</h3>
+          <p className="text-xs">
+            <span className="md:hidden">Tap</span>
+            <span className="hidden md:inline">Hover over</span> for more
+            details
+          </p>
+
           <TopHoldingsBarChart
             holdings={fundData.data.portfolio.top10Holdings}
           />
-        </Suspense>
-      </div>
-
+        </div>
+      </Suspense>
       {/* Documents */}
       <div className="mt-4">
         <h3 className="font-bold">Documents:</h3>
