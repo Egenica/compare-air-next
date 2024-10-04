@@ -3,17 +3,26 @@ import './spinner.css';
 const LoadingSpinner = ({
   loadingText,
   textColorClass,
+  spinnerColor,
 }: {
   loadingText?: string;
   textColorClass?: string;
+  spinnerColor?: string;
 }) => {
   return (
     <div
-      className="flex items-center justify-center h-screen"
+      className="flex flex-row items-center justify-center p-3 h-52"
       role="status"
       aria-live="polite"
     >
-      <div className="lds-ring">
+      <div
+        className="lds-ring"
+        style={
+          {
+            '--spinner-color': spinnerColor || 'rgb(6, 88, 254)',
+          } as React.CSSProperties
+        }
+      >
         <div></div>
         <div></div>
         <div></div>

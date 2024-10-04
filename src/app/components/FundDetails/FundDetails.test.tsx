@@ -12,7 +12,7 @@ describe('FundDetails Component', () => {
     jest.clearAllMocks();
   });
 
-  test('renders correctly with a selected fund', async () => {
+  it('renders correctly with a selected fund', async () => {
     (fetchFundData as jest.Mock).mockResolvedValue(mockFundData);
     await act(async () => {
       render(<FundDetails selectedFund="test-fund" />);
@@ -23,7 +23,7 @@ describe('FundDetails Component', () => {
     });
   });
 
-  test('displays error message on fetch failure', async () => {
+  it('displays error message on fetch failure', async () => {
     (fetchFundData as jest.Mock).mockRejectedValue(
       new Error('Failed to fetch')
     );
@@ -39,7 +39,7 @@ describe('FundDetails Component', () => {
     });
   });
 
-  test('displays message when no fund is selected', async () => {
+  it('displays message when no fund is selected', async () => {
     await act(async () => {
       render(<FundDetails selectedFund="" />);
     });
@@ -49,7 +49,7 @@ describe('FundDetails Component', () => {
     ).toBeInTheDocument();
   });
 
-  test('displays fetched data correctly', async () => {
+  it('displays fetched data correctly', async () => {
     (fetchFundData as jest.Mock).mockResolvedValue(mockFundData);
 
     await act(async () => {

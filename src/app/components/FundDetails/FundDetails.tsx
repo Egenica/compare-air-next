@@ -103,6 +103,7 @@ const FundDetails = ({ selectedFund }: FundDetailsProps) => {
             <LoadingSpinner
               loadingText="Loading charts..."
               textColorClass="text-black"
+              spinnerColor="#fe6484"
             />
           }
         >
