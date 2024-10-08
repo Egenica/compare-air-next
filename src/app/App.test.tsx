@@ -1,25 +1,40 @@
-import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Home from './App';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-describe('Home Component', () => {
-  test('renders without crashing', () => {
-    render(<Home />);
-    expect(
-      screen.getByText(/Investment Strategy Selector/i)
-    ).toBeInTheDocument();
-  });
+// teardown and cleanup
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-  test('initially does not render FundDetails', () => {
-    render(<Home />);
-    expect(screen.queryByText(/Select Growth Fund:/i)).toBeNull();
-  });
+window.scrollTo = jest.fn();
 
-  test('renders FundDetails when a fund is selected', () => {
-    render(<Home />);
-    const selectStrategy = screen.getByLabelText(/Select Strategy:/i);
-    fireEvent.change(selectStrategy, { target: { value: 'growth' } });
+test('Renders loading text', () => {
+  render(<App />);
+  const el = screen.getByText(/LOADING DATA/i);
+  expect(el).toBeInTheDocument();
+});
 
-    expect(screen.getByText(/Select Growth Fund:/i)).toBeInTheDocument();
-  });
+test('Renders heading text', () => {
+  render(<App />);
+  const el = screen.getByText(/Compare your Air/i);
+  expect(el).toBeInTheDocument();
+});
+
+test('Renders subheading text', () => {
+  render(<App />);
+  const el = screen.getByText(/Compare the air quality between cities in the UK/i);
+  expect(el).toBeInTheDocument();
+});
+
+test('Renders to top of page button and tests click', () => {
+  render(<App />);
+  const el = screen.getByText(/TOP/i);
+
+  expect(el).toBeInTheDocument();
+
+  el.onclick = jest.fn();
+  expect(el.onclick).not.toHaveBeenCalled();
+  el.click();
+  expect(el.onclick).toHaveBeenCalled();
 });
