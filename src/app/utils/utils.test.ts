@@ -1,4 +1,3 @@
-//import '@testing-library/jest-dom';
 import { displayDate } from './utils';
 
 describe('displayDate', () => {

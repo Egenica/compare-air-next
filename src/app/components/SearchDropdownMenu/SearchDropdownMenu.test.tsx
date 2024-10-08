@@ -1,4 +1,5 @@
 import React from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { SearchDropdownMenu } from './SearchDropdownMenu';
 import { ICitysResult } from '../../types/IResult';
@@ -52,7 +53,7 @@ test('Renders SearchDropdownMenu component', () => {
       setHideShowDropdown={setHideShowDropdown}
       selectedCitys={selectedCitys}
       setSelectedCitys={setSelectedCitys}
-    />,
+    />
   );
   const el = screen.getByText(/Manchester/i);
   expect(el).toBeInTheDocument();
