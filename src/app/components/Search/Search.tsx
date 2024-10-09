@@ -1,12 +1,15 @@
+'use client';
 import React, { useEffect, useState } from 'react';
-import { ICitysResult, ISearchProps } from './../../types/IResult';
+import { ICitysResult } from './../../types/IResult';
 import { SearchResultsCard } from '../SearchResultsCard/SearchResultsCard';
 import { SearchDropdownMenu } from '../SearchDropdownMenu/SearchDropdownMenu';
 import { getCityData } from '../../server/getData';
 import { CloseSearch } from './CloseSearch';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import Image from 'next/image';
 
-export const Search = ({ setLoading }: ISearchProps) => {
+export const Search = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [results, setResults] = useState<ICitysResult[]>([]);
@@ -44,6 +47,18 @@ export const Search = ({ setLoading }: ISearchProps) => {
 
   return (
     <>
+      {loading && (
+        <div
+          className={`w-20 m-10 flex flex-col items-center absolute top-96 md:top-0 transition-opacity ease-in duration-700 ${
+            loading ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <Image src={'/grid.svg'} alt="loading" width={100} height={100} />
+          <p className="center text-white text-xs p-4 tracking-widest w-max">
+            LOADING DATA
+          </p>
+        </div>
+      )}
       <div className="w-full md:w-1/2 relative">
         <CloseSearch
           setSearchTerm={setSearchTerm}

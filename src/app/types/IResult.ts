@@ -8,10 +8,6 @@ export interface ICitysResult {
   parameters: string[];
 }
 
-export interface ISearchProps {
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 export interface ISearchDropdownMenuProps {
   results: ICitysResult[];
   hideShowDropdown: boolean;
