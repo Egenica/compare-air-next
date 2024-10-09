@@ -17,6 +17,8 @@ export const SearchResultsCard = ({
   const [deletedCity, setDeletedCity] = useState<string>('');
   const [error, setError] = useState(false);
 
+  // console.log('result', result);
+
   // Remove city from city list (removes all instances of city)
   const removeCityFromCityList = useCallback(
     (removeCity: string) => {
@@ -103,7 +105,7 @@ export const SearchResultsCard = ({
           >
             <Image
               src={'/close-icon.svg'}
-              alt="close"
+              alt={`close-${cityLocation.id}`}
               className="close-icon"
               width={15}
               height={15}
