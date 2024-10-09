@@ -2,9 +2,8 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { SearchResultsCard } from './SearchResultsCard';
-import { ISearchResultsProps, ICitysResult } from '../../types/IResult';
+import { ICitysResult } from '../../types/IResult';
 import { getCityCardData } from '../../server/getData';
-import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
 
 jest.mock('../../server/getData');
 
@@ -103,6 +102,66 @@ describe('SearchResultsCard Component', () => {
     await waitFor(
       () => {
         expect(card).toHaveClass('opacity-100');
+      },
+      { timeout: 500 }
+    );
+  });
+
+  it('test_city_card_animation_on_mouse_hover', async () => {
+    (getCityCardData as jest.Mock).mockResolvedValue({
+      results: mockCityLocations,
+    });
+
+    const { container } = render(
+      <SearchResultsCard
+        result={mockResult}
+        setSelectedCitys={mockSetSelectedCitys}
+      />
+    );
+
+    await waitFor(() =>
+      expect(getCityCardData).toHaveBeenCalledWith('Test City')
+    );
+
+    const card = container.querySelector('.rounded-lg');
+
+    if (card) {
+      fireEvent.mouseOver(card);
+    }
+
+    await waitFor(
+      () => {
+        expect(card).toHaveClass('md:hover:scale-105');
+      },
+      { timeout: 500 }
+    );
+  });
+
+  it('test_city_card_animation_on_mouse_leave', async () => {
+    (getCityCardData as jest.Mock).mockResolvedValue({
+      results: mockCityLocations,
+    });
+
+    const { container } = render(
+      <SearchResultsCard
+        result={mockResult}
+        setSelectedCitys={mockSetSelectedCitys}
+      />
+    );
+
+    await waitFor(() =>
+      expect(getCityCardData).toHaveBeenCalledWith('Test City')
+    );
+
+    const card = container.querySelector('.rounded-lg');
+
+    if (card) {
+      fireEvent.mouseLeave(card);
+    }
+
+    await waitFor(
+      () => {
+        expect(card).toHaveClass('md:hover:scale-105');
       },
       { timeout: 500 }
     );
