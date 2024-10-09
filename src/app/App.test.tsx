@@ -1,50 +1,55 @@
-// import React from 'react';
-// import { render, screen, act } from '@testing-library/react';
-// import App from './App';
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-// // teardown and cleanup
-// afterEach(() => {
-//   jest.clearAllMocks();
-// });
+// teardown and cleanup
+afterEach(() => {
+  jest.clearAllMocks();
+});
 
-// window.scrollTo = jest.fn();
+window.scrollTo = jest.fn();
 
-// test('Renders loading text', () => {
-//   act(() => {
-//     render(<App />);
-//   });
-//   const el = screen.getByText(/LOADING DATA/i);
-//   expect(el).toBeInTheDocument();
-// });
+describe('App Component', () => {
+  it('should render without crashing', async () => {
+    const appComp = await App();
 
-// test('Renders heading text', () => {
-//   act(() => {
-//     render(<App />);
-//   });
-//   const el = screen.getByText(/Compare your Air/i);
-//   expect(el).toBeInTheDocument();
-// });
+    const { container } = render(appComp);
 
-// test('Renders subheading text', () => {
-//   act(() => {
-//     render(<App />);
-//   });
-//   const el = screen.getByText(
-//     /Compare the air quality between cities in the UK/i
-//   );
-//   expect(el).toBeInTheDocument();
-// });
+    await expect(container).toBeInTheDocument();
+  });
 
-// test('Renders to top of page button and tests click', () => {
-//   act(() => {
-//     render(<App />);
-//   });
-//   const el = screen.getByText(/TOP/i);
+  it('should render the App component', async () => {
+    const appComp = await App();
+    const { getByText } = render(appComp);
+    expect(getByText('Compare your Air')).toBeInTheDocument();
+  });
 
-//   expect(el).toBeInTheDocument();
+  test('Renders loading text', async () => {
+    const appComp = await App();
+    const { getByText } = render(appComp);
+    expect(getByText(/LOADING DATA/i)).toBeInTheDocument();
+  });
 
-//   el.onclick = jest.fn();
-//   expect(el.onclick).not.toHaveBeenCalled();
-//   el.click();
-//   expect(el.onclick).toHaveBeenCalled();
-// });
+  test('Renders subheading text', async () => {
+    const appComp = await App();
+    render(appComp);
+    const el = screen.getByText(
+      /Compare the air quality between cities in the UK/i
+    );
+    expect(el).toBeInTheDocument();
+  });
+
+  test('Renders to top of page button and tests click', async () => {
+    const appComp = await App();
+    render(appComp);
+
+    const el = screen.getByText(/TOP/i);
+
+    expect(el).toBeInTheDocument();
+
+    el.onclick = jest.fn();
+    expect(el.onclick).not.toHaveBeenCalled();
+    el.click();
+    expect(el.onclick).toHaveBeenCalled();
+  });
+});
