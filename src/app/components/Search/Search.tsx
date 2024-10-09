@@ -59,7 +59,7 @@ export const Search = () => {
           </p>
         </div>
       )}
-      <div className="w-full md:w-1/2 relative">
+      <div className="w-full md:w-1/2 sticky top-0 z-10">
         <CloseSearch
           setSearchTerm={setSearchTerm}
           setHideShowDropdown={setHideShowDropdown}
