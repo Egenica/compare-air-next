@@ -1,31 +1,44 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { Search } from './Search';
+import { getCityData } from '../../server/getData';
+import { ICitysResult } from './../../types/IResult';
 
-// teardown and cleanup
-afterEach(() => {
-  jest.clearAllMocks();
-});
+jest.mock('../../server/getData');
 
-const mockSetLoading = jest.fn();
+describe('Search Component', () => {
+  const mockCityData: ICitysResult[] = [
+    { city: 'New York', country: 'USA' },
+    { city: 'Los Angeles', country: 'USA' },
+  ];
 
-test('renders input search component', () => {
-  act(() => {
-    render(<Search setLoading={mockSetLoading} />);
-  });
-  const searchInput = screen.getByPlaceholderText(/Search for a city/i);
-  expect(searchInput).toBeInTheDocument();
-});
-
-// create test that checks if the search input is empty when the clear button is clicked
-
-test('clears search input when clear button is clicked', () => {
-  act(() => {
-    render(<Search setLoading={mockSetLoading} />);
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
-  const searchInput = screen.getByPlaceholderText(/Search for a city/i);
-  expect(searchInput).toBeInTheDocument();
-  expect(searchInput).toHaveValue('');
+  it('test_fetch_and_display_city_data', async () => {
+    (getCityData as jest.Mock).mockResolvedValue({ results: mockCityData });
+
+    render(<Search />);
+
+    fireEvent.change(screen.getByPlaceholderText('Search for a city'), {
+      target: { value: 'New York' },
+    });
+
+    await waitFor(() => expect(getCityData).toHaveBeenCalledTimes(1));
+    await waitFor(() =>
+      expect(screen.getByText('New York')).toBeInTheDocument()
+    );
+  });
+
+  it('test_display_error_message_on_data_load_failure', async () => {
+    (getCityData as jest.Mock).mockRejectedValue(new Error('Failed to fetch'));
+
+    render(<Search />);
+
+    await waitFor(() =>
+      expect(screen.getByText('Failed to load city data')).toBeInTheDocument()
+    );
+  });
 });

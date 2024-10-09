@@ -1,6 +1,6 @@
 import React from 'react';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { SearchDropdownMenu } from './SearchDropdownMenu';
 import { ICitysResult } from '../../types/IResult';
 
@@ -45,7 +45,7 @@ const selectedCitys: ICitysResult[] = [
   },
 ];
 
-test('Renders SearchDropdownMenu component', () => {
+test('Renders SearchDropdownMenu component', async () => {
   render(
     <SearchDropdownMenu
       results={results}
@@ -55,6 +55,9 @@ test('Renders SearchDropdownMenu component', () => {
       setSelectedCitys={setSelectedCitys}
     />
   );
+
+  fireEvent.mouseDown(document);
+
   const el = screen.getByText(/Manchester/i);
   expect(el).toBeInTheDocument();
 
