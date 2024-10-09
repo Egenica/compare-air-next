@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen, act } from '@testing-library/react';
 import App from './App';
+// import preview from 'jest-preview';
 
 // teardown and cleanup
 afterEach(() => {
@@ -23,6 +24,7 @@ describe('App Component', () => {
       const appComp = await App();
       render(appComp);
     });
+    // preview.debug();
     const el = screen.getByText(/Compare your Air/i);
     expect(el).toBeInTheDocument();
   });
