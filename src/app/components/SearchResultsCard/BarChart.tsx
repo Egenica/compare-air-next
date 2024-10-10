@@ -46,6 +46,23 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
           legendPosition: 'middle',
           legendOffset: -40,
         }}
+        defs={[
+          {
+            id: 'gradient',
+            type: 'linearGradient',
+            colors: [
+              { offset: 0, color: '#b884fc' },
+              { offset: 30, color: '#b884fc' },
+              { offset: 100, color: '#3d83f6' },
+            ],
+          },
+        ]}
+        fill={[
+          {
+            match: '*',
+            id: 'gradient',
+          },
+        ]}
         labelSkipWidth={12}
         labelSkipHeight={12}
         labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
