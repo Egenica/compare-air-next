@@ -62,6 +62,8 @@ export const SearchResultsCard = ({
       });
   }, [result.city]);
 
+  console.log('cityLocations', cityLocations);
+
   if (error) {
     return <ErrorMessage errorTxt="Failed to loading city" />;
   }
@@ -135,10 +137,25 @@ export const SearchResultsCard = ({
                     key={prama.id}
                     className="text-gray-700 font-normal uppercase text-xs"
                   >
-                    {prama.parameter +
-                      ': ' +
-                      prama.lastValue +
-                      (cityLocation.parameters.length - 1 !== i ? ', ' : ' ')}
+                    <span
+                      title={
+                        (prama.parameter === 'pm25' &&
+                          'Fine particulate matter') ||
+                        (prama.parameter === 'pm10' &&
+                          'Coarse particulate matter') ||
+                        (prama.parameter === 'no2' && 'Nitrogen dioxide') ||
+                        (prama.parameter === 'o3' && 'Ozone') ||
+                        (prama.parameter === 'so2' && 'Sulphur dioxide') ||
+                        (prama.parameter === 'co' && 'Carbon monoxide') ||
+                        ''
+                      }
+                      className="hover:text-blue-700"
+                    >
+                      {prama.parameter +
+                        ': ' +
+                        prama.lastValue +
+                        (cityLocation.parameters.length - 1 !== i ? ', ' : ' ')}
+                    </span>
                   </span>
                 );
               })}

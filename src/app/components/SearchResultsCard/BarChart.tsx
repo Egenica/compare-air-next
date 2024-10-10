@@ -24,7 +24,7 @@ const BarChart: React.FC<BarChartProps> = ({ data }) => {
         indexBy="parameter"
         margin={{ top: 50, right: 0, bottom: 50, left: 25 }}
         padding={0.3}
-        valueScale={{ type: 'linear' }}
+        valueScale={{ type: 'linear', min: 0, max: 65 }}
         indexScale={{ type: 'band', round: true }}
         colors={['#b884fc']}
         borderColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
