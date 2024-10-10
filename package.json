@@ -12,6 +12,7 @@
     "jest-preview": "jest-preview"
   },
   "dependencies": {
+    "@nivo/bar": "^0.87.0",
     "next": "^14.2.14",
     "react": "^18",
     "react-dom": "^18"

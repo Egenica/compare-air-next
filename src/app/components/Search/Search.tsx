@@ -59,6 +59,16 @@ export const Search = () => {
           </p>
         </div>
       )}
+      <button
+        className="ml-2 p-2 bg-slate-400/50 text-white rounded fixed top-4 right-4 backdrop-blur"
+        onClick={() => {
+          setSearchTerm('');
+          setHideShowDropdown(false);
+          setSelectedCitys([]);
+        }}
+      >
+        Clear All
+      </button>
       <div className="w-full md:w-1/2 sticky top-0 z-10">
         <CloseSearch
           setSearchTerm={setSearchTerm}

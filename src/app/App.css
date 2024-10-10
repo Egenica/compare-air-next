@@ -1,10 +1,11 @@
 .search-icon {
   -webkit-appearance: none;
   appearance: none;
-  background: url('/001-search.png') no-repeat;
+  background-image: url('/001-search.png');
+  background-repeat: no-repeat;
   background-position: 14px center;
   background-size: 30px;
-  background-color: white;
+  /* background-color: white; */
   text-transform: capitalize;
 }
 

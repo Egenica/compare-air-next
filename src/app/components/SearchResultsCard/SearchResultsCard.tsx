@@ -5,6 +5,7 @@ import { displayDate, hyphenate } from '../../utils/utils';
 import { getCityCardData } from '../../server/getData';
 import { LinkIcon } from './LinkIcon';
 import { ErrorMessage } from '../ErrorMessage/ErrorMessage';
+import BarChart from './BarChart';
 
 export const SearchResultsCard = ({
   result,
@@ -125,13 +126,14 @@ export const SearchResultsCard = ({
               }`}
             </p>
 
-            <p className="text-gray-900 font-bold text-sm">
+            <BarChart data={cityLocation.parameters} />
+            <p className="text-gray-900 font-bold text-xs">
               Values:{' '}
               {cityLocation.parameters.map((prama, i) => {
                 return (
                   <span
                     key={prama.id}
-                    className="text-gray-700 text-base font-normal uppercase "
+                    className="text-gray-700 font-normal uppercase text-xs"
                   >
                     {prama.parameter +
                       ': ' +
